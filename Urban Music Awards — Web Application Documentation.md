@@ -40,6 +40,10 @@ The application includes:
 | voter_name | VARCHAR(100) | Name of the person who voted           |
 | artist_id  | INT (FK)     | ID of the artist who received the vote |
 
+
+
+
+
 **Relationships:**
 
 - Each **artist** can receive many votes.
@@ -48,4 +52,4 @@ The application includes:
 
 ## 4. GUI design
 
-![PHP_Project_Model](PHP_Project_Model.png)
+![PHP_Project_Model](/home/sanclemente.local/a21braispn/Descargas/PHP_Project_Model.png)
