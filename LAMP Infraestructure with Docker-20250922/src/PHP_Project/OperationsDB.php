@@ -1,6 +1,6 @@
 <?php
-require_once("Artist.php");
-require_once("Vote.php");
+require_once("Utils/Artist.php");
+require_once("Utils/Vote.php");
 
 class Operations {
     private $conn;
@@ -59,56 +59,64 @@ class Operations {
         return $artists;
     }
 
-    public function addrtist(artist $artist) {
+    public function getNumberVotes($artistId) {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM Vote WHERE artistId = ?");
+        $stmt->execute([$name]);
+        $data = $stmt->fetch();
+
+        if (!$data) return 0;
+
+        return (int)$data['total'];
+    }
+
+    public function addVote(Vote $vote) {
         try {
             $this->conn->beginTransaction();
             $stmt = $this->conn->prepare(
-                "INSERT INTO artist (dni, name, surname, age) VALUES (?, ?, ?, ?)"
+                "INSERT INTO Votes (voter_dni, voter_name, artist_id) VALUES (?, ?, ?)"
             );
             $stmt->execute([
-                $artist->getDni(),
-                $artist->getName(),
-                $artist->getSurname(),
-                $artist->getAge()
+                $artist->setVoterDni(),
+                $artist->getVoterName(),
+                $artist->getArtistId(),
             ]);
             $this->conn->commit();
             return $stmt->rowCount();
         } catch (PDOException $e) {
             $this->conn->rollback();
-            throw new Exception("Error adding artist: " . $e->getMessage());
+            throw new Exception("Error adding vote: " . $e->getMessage());
         }
     }
 
-    public function updateartist(artist $artist) {
+    public function updateVote(Vote $vote) {
         try {
             $this->conn->beginTransaction();
             $stmt = $this->conn->prepare(
-                "UPDATE artist SET name = ?, surname = ?, age = ? WHERE dni = ?"
+                "UPDATE Vote SET voterName = ?, artistId = ? WHERE voterDni = ?"
             );
             $stmt->execute([
-                $artist->getName(),
-                $artist->getSurname(),
-                $artist->getAge(),
-                $artist->getDni()
+                $artist->setVoterDni(),
+                $artist->getVoterName(),
+                $artist->getArtistId(),
             ]);
             $this->conn->commit();
             return $stmt->rowCount();
         } catch (PDOException $e) {
             $this->conn->rollback();
-            throw new Exception("Error updating artist: " . $e->getMessage());
+            throw new Exception("Error updating vote: " . $e->getMessage());
         }
     }
 
-    public function deleteartist($dni) {
+    public function deleteVote($voterDni) {
         try {
             $this->conn->beginTransaction();
-            $stmt = $this->conn->prepare("DELETE FROM artist WHERE dni = ?");
-            $stmt->execute([$dni]);
+            $stmt = $this->conn->prepare("DELETE FROM Vote WHERE voterDni = ?");
+            $stmt->execute([$voterDni]);
             $this->conn->commit();
             return $stmt->rowCount();
         } catch (PDOException $e) {
             $this->conn->rollback();
-            throw new Exception("Error deleting artist: " . $e->getMessage());
+            throw new Exception("Error deleting vote: " . $e->getMessage());
         }
     }
 }

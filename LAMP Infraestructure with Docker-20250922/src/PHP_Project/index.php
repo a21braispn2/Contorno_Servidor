@@ -19,8 +19,8 @@
 <body>
     <?php
         require_once "OperationsDB.php";
-        require_once "Artist.php";
-        require_once "Vote.php";
+        require_once("Utils/Artist.php");
+        require_once("Utils/Vote.php");
 
         function test_input($data) {
             $data = trim($data);
@@ -109,26 +109,17 @@
                     <th>Artist</th>
                     <th>Last Song</th>
                     <th>Votes</th>
-
                 </tr>
             </thead>
             <tbody id="artistList">
                 <?php
         try {
-            $students = $oper->getAllStudents();
-            foreach ($students as $s) {
+            $artists = $oper->getAllArtists();
+            foreach ($artists as $a) {
                 echo "<tr>
-                        <td>".htmlspecialchars($s->getName())."</td>
-                        <td>".htmlspecialchars($s->getSurname())."</td>
-                        <td>".htmlspecialchars($s->getDni())."</td>
-                        <td>".htmlspecialchars($s->getAge())."</td>
-                        <td>
-                            <form method='POST' action='studentManager.php'>
-                                <input type='hidden' name='dni' value='".htmlspecialchars($s->getDni())."'>
-                                <button type='submit' name='update' class='btn-update'>Update</button>
-                                <button type='submit' name='delete' class='btn-delete'>Delete</button>
-                            </form>
-                        </td>
+                        <td>".htmlspecialchars($a->getName())."</td>
+                        <td>".htmlspecialchars($a->getLastSong())."</td>
+                        <td>".htmlspecialchars($a->getNumberVotes())."</td>
                     </tr>";
             }
         } catch (Exception $e) {
