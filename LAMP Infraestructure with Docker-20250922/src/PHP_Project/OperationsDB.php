@@ -50,18 +50,31 @@ class Operations {
 
         while ($row = $stmt->fetch()) {
             $artist = new Artist();
-            $artist->setId($row["id"]);
+            $artist->setId($row["artist_id"]);
             $artist->setName($row["name"]);
-            $artist->setLastSong($row["lastSong"]);
+            $artist->setLastSong($row["last_song"]);
             $artists[] = $artist;
         }
 
         return $artists;
     }
 
+    public function getVote($dni) {
+        $stmt = $this->conn->prepare("SELECT voter_dni, voter_name, artist_id FROM Votes WHERE voter_dni = ?");
+        $stmt->execute([$dni]);
+        $data = $stmt->fetch();
+
+        if (!$data) return null;
+
+        $vote = new Artist();
+        $vote->setVoterDni($row["voter_dni"]);
+        $vote->setVoterName($row["voter_name"]);
+        $vote->setArtistId($row["artist_id"]);
+        return $vote;
+    }
     public function getNumberVotes($artistId) {
-        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM Vote WHERE artistId = ?");
-        $stmt->execute([$name]);
+        $stmt = $this->conn->prepare("SELECT COUNT(*) as 'total' FROM Votes WHERE artist_id = ?");
+        $stmt->execute([$artistId]);
         $data = $stmt->fetch();
 
         if (!$data) return 0;
@@ -76,9 +89,9 @@ class Operations {
                 "INSERT INTO Votes (voter_dni, voter_name, artist_id) VALUES (?, ?, ?)"
             );
             $stmt->execute([
-                $artist->setVoterDni(),
-                $artist->getVoterName(),
-                $artist->getArtistId(),
+                $vote->setVoterDni(),
+                $vote->getVoterName(),
+                $vote->getArtistId(),
             ]);
             $this->conn->commit();
             return $stmt->rowCount();
@@ -95,9 +108,9 @@ class Operations {
                 "UPDATE Vote SET voterName = ?, artistId = ? WHERE voterDni = ?"
             );
             $stmt->execute([
-                $artist->setVoterDni(),
-                $artist->getVoterName(),
-                $artist->getArtistId(),
+                $vote->setVoterDni(),
+                $vote->getVoterName(),
+                $vote->getArtistId(),
             ]);
             $this->conn->commit();
             return $stmt->rowCount();
