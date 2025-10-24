@@ -38,9 +38,9 @@ class Operations {
         if (!$data) return null;
 
         $artist = new Artist();
-        $artist->setId($row["id"]);
-        $artist->setName($row["name"]);
-        $artist->setLastSong($row["lastSong"]);
+        $artist->setId($data["artist_id"]);
+        $artist->setName($data["name"]);
+        $artist->setLastSong($data["last_song"]);
         return $artist;
     }
 
@@ -66,20 +66,19 @@ class Operations {
 
         if (!$data) return null;
 
-        $vote = new Artist();
-        $vote->setVoterDni($row["voter_dni"]);
-        $vote->setVoterName($row["voter_name"]);
-        $vote->setArtistId($row["artist_id"]);
+        $vote = new Vote();
+        $vote->setVoterDni($data["voter_dni"]);
+        $vote->setVoterName($data["voter_name"]);
+        $vote->setArtistId($data["artist_id"]);
         return $vote;
     }
+
     public function getNumberVotes($artistId) {
-        $stmt = $this->conn->prepare("SELECT COUNT(*) as 'total' FROM Votes WHERE artist_id = ?");
+        $stmt = $this->conn->prepare("SELECT COUNT(*) AS total FROM Votes WHERE artist_id = ?");
         $stmt->execute([$artistId]);
         $data = $stmt->fetch();
 
-        if (!$data) return 0;
-
-        return (int)$data['total'];
+        return $data ? (int)$data['total'] : 0;
     }
 
     public function addVote(Vote $vote) {
@@ -89,15 +88,15 @@ class Operations {
                 "INSERT INTO Votes (voter_dni, voter_name, artist_id) VALUES (?, ?, ?)"
             );
             $stmt->execute([
-                $vote->setVoterDni(),
+                $vote->getVoterDni(),
                 $vote->getVoterName(),
-                $vote->getArtistId(),
+                $vote->getArtistId()
             ]);
             $this->conn->commit();
             return $stmt->rowCount();
-        } catch (PDOException $e) {
-            $this->conn->rollback();
-            throw new Exception("Error adding vote: " . $e->getMessage());
+        } catch (PDOException $error) {
+            $this->conn->rollBack();
+            throw $error;
         }
     }
 
@@ -105,17 +104,17 @@ class Operations {
         try {
             $this->conn->beginTransaction();
             $stmt = $this->conn->prepare(
-                "UPDATE Vote SET voterName = ?, artistId = ? WHERE voterDni = ?"
+                "UPDATE Votes SET voter_name = ?, artist_id = ? WHERE voter_dni = ?"
             );
             $stmt->execute([
-                $vote->setVoterDni(),
                 $vote->getVoterName(),
                 $vote->getArtistId(),
+                $vote->getVoterDni()
             ]);
             $this->conn->commit();
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            $this->conn->rollback();
+            $this->conn->rollBack();
             throw new Exception("Error updating vote: " . $e->getMessage());
         }
     }
@@ -123,12 +122,12 @@ class Operations {
     public function deleteVote($voterDni) {
         try {
             $this->conn->beginTransaction();
-            $stmt = $this->conn->prepare("DELETE FROM Vote WHERE voterDni = ?");
+            $stmt = $this->conn->prepare("DELETE FROM Votes WHERE voter_dni = ?");
             $stmt->execute([$voterDni]);
             $this->conn->commit();
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            $this->conn->rollback();
+            $this->conn->rollBack();
             throw new Exception("Error deleting vote: " . $e->getMessage());
         }
     }

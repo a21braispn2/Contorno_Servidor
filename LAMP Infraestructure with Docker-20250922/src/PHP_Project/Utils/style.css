@@ -1,3 +1,94 @@
-img {
-  width: 20px;
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(fondo.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  height: 60px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  text-align: center;
+}
+
+a img {
+  height: 60px;
+}
+/* --- Estilos de la tabla --- */
+table {
+  width: 60%;
+  border-collapse: collapse;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+thead {
+  background-color: black;
+}
+
+th,
+td {
+  padding: 15px 20px;
+  text-align: center;
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background-color 0.3s;
+}
+
+/* --- Botón Votar --- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button,
+.votar-btn {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover,
+.votar-btn:hover {
+  background-color: #e65c00;
+  transform: scale(1.05);
+}
+
+/* --- Footer --- */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }

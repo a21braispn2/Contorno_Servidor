@@ -48,4 +48,4 @@ The application includes:
 
 ## 4. GUI design
 
-![PHP_Project_Model](PHP_Project_Model.png)
+![PHP_Project_Model](Utils/PHP_Project_Model.png)

@@ -5,19 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Urban Music Awards</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="Utils/style.css" />
 </head>
 
-
 <body>
-    <?php
-
-     ?>
     <header>
-        <img src="Utils/icono.png" alt="icono">
+        <a href="index.php"><img src="Utils/icono.png" alt="icono"></a>
+
     </header>
     <main>
         <table id="artistsTable">
@@ -36,6 +30,12 @@
         try {
             $oper = new Operations();
             $artists = $oper->getAllArtists();
+            $artists = $oper->getAllArtists();
+
+            usort($artists, function($a, $b) use ($oper) {
+                return $oper->getNumberVotes($b->getId()) - $oper->getNumberVotes($a->getId());
+            });
+
             foreach ($artists as $a) {
                 echo "<tr>
                         <td>".htmlspecialchars($a->getName())."</td>
@@ -50,6 +50,8 @@
         ?>
             </tbody>
         </table>
+        <button class="votar-btn"><a href="voting.php">Votar</a></button>
+
     </main>
 
     <footer>
