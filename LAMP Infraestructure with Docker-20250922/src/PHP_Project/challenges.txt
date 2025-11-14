@@ -1,0 +1,1 @@
+The most challenging part was the vote counting process, as it was something completely new to me. I had never tried it before, and it required a well-structured database design to ensure accuracy and efficiency.

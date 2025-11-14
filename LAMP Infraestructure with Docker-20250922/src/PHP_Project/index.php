@@ -30,7 +30,6 @@
         try {
             $oper = new Operations();
             $artists = $oper->getAllArtists();
-            $artists = $oper->getAllArtists();
 
             usort($artists, function($a, $b) use ($oper) {
                 return $oper->getNumberVotes($b->getId()) - $oper->getNumberVotes($a->getId());
