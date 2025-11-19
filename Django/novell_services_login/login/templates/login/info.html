@@ -1,0 +1,19 @@
+<div class="container">
+  <h3>Submitted Information</h3>
+
+  <p>Username: {{ username }}</p>
+  <p>Password: {{ password }}</p>
+  <p>City of Employment: {{ city }}</p>
+  <p>Web Server: {{ server }}</p>
+  <p>Role: {{ role }}</p>
+  <p>SSO:</p>
+  {% if sso %}
+  <ul>
+    {% for item in sso %}
+    <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <em>No SSO options selected.</em>
+  {% endif %}
+</div>

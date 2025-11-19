@@ -1,0 +1,36 @@
+<div class="container">
+  <h3>Novell Services Login</h3>
+  <form action="{% url 'info' %}">
+    <label>Username:</label>
+    <input type="text" id="username" name="username" />
+    <br /><br />
+    <label>Password:</label>
+    <input type="password" id="password" name="password" />
+    <br /><br />
+    <label>City of employment:</label>
+    <input type="text" id="city" name="city" />
+    <br /><br />
+    <label>Web Server:</label>
+    <select id="server" name="server">
+      <option value="Apache">Apache</option>
+      <option value="Nginx">Nginx</option>
+      <option value="IIS">IIS</option>
+    </select>
+    <br /><br />
+    <label>Please specify your role:</label><br />
+    <input type="radio" name="role" value="Admin" /> Admin<br />
+    <input type="radio" name="role" value="Engineer" /> Engineer<br />
+    <input type="radio" name="role" value="Manager" /> Manager<br />
+    <input type="radio" name="role" value="Guest" /> Guest<br /><br />
+
+    <label>Single Sign-on to the following:</label><br />
+    <input type="checkbox" name="sso" value="Mail" /> Mail<br />
+    <input type="checkbox" name="sso" value="Payroll" /> Payroll<br />
+    <input type="checkbox" name="sso" value="Self-service" />
+    Self-service<br /><br />
+
+    <button class="btn">Submit</button>
+
+    <div id="output"></div>
+  </form>
+</div>
