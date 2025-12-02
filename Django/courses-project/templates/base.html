@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initialscale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% block css_files%}{% endblock %}
+  </head>
+  <body>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'courses' %}">Courses</a></li>
+      <li><a href="{% url 'registration' %}">Registration</a></li>
+    </ul>
+    {% block content %}{% endblock %}
+  </body>
+</html>

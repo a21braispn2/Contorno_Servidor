@@ -18,8 +18,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
+from courses import views as courses_views
+from registration import views as registration_views
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("", courses_views.courses, name="home"),
+    path('courses/',courses_views.courses, name="courses"),
+    path('registration/',registration_views.registration, name="registration"),
+
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
