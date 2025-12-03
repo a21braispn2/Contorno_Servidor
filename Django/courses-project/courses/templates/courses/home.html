@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %} Home {% endblock %}
 {% block css_files %}{% endblock %}
 
-{% block content %}
+{% block contenido %}
     <h1>Home</h1>
-    <img src="/media/smartphone1.jpg" alt="Smartphone">
+    <img src="{% static 'images/smartphone1.jpg' %}" alt="Smartphone">
 {% endblock %}

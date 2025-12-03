@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initialscale=1.0" />
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    {% block css_files%}{% endblock %}
+    {% block css_files %}{% endblock %}
   </head>
   <body>
     <ul>
@@ -14,6 +14,6 @@
       <li><a href="{% url 'courses' %}">Courses</a></li>
       <li><a href="{% url 'registration' %}">Registration</a></li>
     </ul>
-    {% block content %}{% endblock %}
+    {% block contenido %}{% endblock %}
   </body>
 </html>

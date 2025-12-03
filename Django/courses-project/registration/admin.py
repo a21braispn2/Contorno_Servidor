@@ -1,3 +1,7 @@
+# registration/admin.py
 from django.contrib import admin
 from .models import Registration
-admin.site.register(Registration)
+
+@admin.register(Registration)
+class RegistrationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'surname', 'age', 'date')
