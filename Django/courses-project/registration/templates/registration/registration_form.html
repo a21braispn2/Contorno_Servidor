@@ -1,0 +1,18 @@
+{% extends "courses/base.html" %}
+{% load static %}
+
+{% block title %}Registro de Curso{% endblock %}
+
+{% block contenido %}
+<section>
+    <h1>Formulario de Registro</h1>
+    
+    <form method="POST" action="{% url 'registration_form' %}">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+</section>
+{% endblock %}

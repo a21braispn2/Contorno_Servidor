@@ -1,4 +1,19 @@
-{% extends "base.html" %} {% load static %} 
-{% block title %} Registration {% endblock %} 
-{% block css_files %} {% endblock %} 
-{% block content %} {% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initialscale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static '/courses/css/style.css' %}">
+    {% block css_files %}{% endblock %}
+  </head>
+  <body>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'courses' %}">Courses</a></li>
+      <li><a href="{% url 'registration_form' %}">Registration</a></li>
+    </ul>
+    {% block contenido %}{% endblock %}
+  </body>
+</html>

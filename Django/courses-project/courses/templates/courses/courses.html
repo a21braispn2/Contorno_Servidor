@@ -1,8 +1,25 @@
-{% extends "base.html" %} 
-{% load static %} 
+{% extends "courses/base.html" %}
+{% load static %}
 
-{% block title %} Courses {% endblock %} 
+{% block title %}Cursos Disponibles{% endblock %}
 
 {% block contenido %}
-    <h1>Home</h1>
+<section>
+    <h1>Lista de Cursos Disponibles</h1>
+    
+    <ul>
+    {% for course in courses %}
+        <li>
+            <a href="{% url 'course_detail' pk=course.pk %}">
+                {{ course.name }} - {{ course.description|truncatechars:100 }}
+            </a>
+            
+        </li>
+        <br>
+    {% empty %}
+        <li>No hay cursos disponibles.</li>
+    {% endfor %}
+    </ul>
+</section>
+
 {% endblock %}

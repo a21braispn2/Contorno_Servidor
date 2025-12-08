@@ -1,0 +1,21 @@
+body {
+  margin: 0%;
+}
+#nav {
+  margin: 0%;
+  height: 40px;
+  background-color: antiquewhite;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ 
+section{
+  margin-left: 20px;
+}

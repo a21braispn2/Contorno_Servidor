@@ -14,19 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# coursesProject/urls.py
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include # 🚨 Importa include
 from django.conf.urls.static import static
 from django.conf import settings
-from courses import views as courses_views
-from registration import views as registration_views
 
-
+# 🚨 Quita las importaciones de vistas (courses_views, registration_views)
+# Las manejaremos con include
 
 urlpatterns = [
-    path("", courses_views.courses, name="home"),
-    path('courses/',courses_views.courses, name="courses"),
-    path('registration/',registration_views.registration, name="registration"),
-
+    path('admin/', admin.site.urls),
+    path('', include('courses.urls')), 
+    path('registration/', include('registration.urls')),
 ]
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

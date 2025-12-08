@@ -1,0 +1,18 @@
+{% extends "courses/base.html" %}
+
+{% block title %}Registro Exitoso{% endblock %}
+
+{% block contenido %}
+<section>
+    <h1>Registro:</h1>
+    
+    <ul>
+        <li>Nombre: {{ data.name }}</li>
+        <li>Apellido: {{ data.surname }}</li>
+        <li>Edad: {{ data.age }}</li>
+        <li>Fecha: {{ data.date }}</li>
+    </ul>
+
+    <a href="{% url 'registration_form' %}" class="btn btn-secondary">Volver al Formulario</a>
+</section>
+{% endblock %}
