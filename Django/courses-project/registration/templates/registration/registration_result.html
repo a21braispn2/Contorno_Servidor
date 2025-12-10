@@ -7,12 +7,12 @@
     <h1>Registro:</h1>
     
     <ul>
-        <li>Nombre: {{ data.name }}</li>
-        <li>Apellido: {{ data.surname }}</li>
-        <li>Edad: {{ data.age }}</li>
-        <li>Fecha: {{ data.date }}</li>
+        <li>Nombre: {{ name }}</li>
+        <li>Apellido: {{ surname }}</li>
+        <li>Edad: {{ age }}</li>
+        <li>Fecha: {{ date }}</li>
     </ul>
 
-    <a href="{% url 'registration_form' %}" class="btn btn-secondary">Volver al Formulario</a>
+    <a href="{% url 'registration' %}">Volver al Formulario</a>
 </section>
 {% endblock %}

@@ -1,29 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      body {
-        margin: 0%;
-      }
-      ul {
-        margin: 0%;
-        height: 40px;
-        background-color: antiquewhite;
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 50px;
-      }
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-    </style>
-  </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initialscale=1.0">
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="{% static "app.css" %}">
+{% block css_files %}{% endblock %}
+</head>
   <body>
     <ul>
       <li><a href="#">Home</a></li>
@@ -31,6 +15,6 @@
       <li><a href="#">Registration</a></li>
     </ul>
     <h1>Home</h1>
-    <img src="{% meida 'app/resume.pdf' %}" alt="">
+    <img src="{% media 'app/resume.pdf' %}" alt="">
   </body>
 </html>

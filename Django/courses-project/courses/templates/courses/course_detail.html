@@ -1,7 +1,7 @@
 {% extends "courses/base.html" %}
 {% load static %}
 
-{% block title %}Detalle: {{ course.name }}{% endblock %}
+{% block title %}Detalles: {{ course.name }}{% endblock %}
 
 {% block contenido %}
     <section>
@@ -14,7 +14,7 @@
         
         <h2>Descripción</h2>
         <p>{{ course.description }}</p> 
-        <a href="{% url 'courses' %}" class="btn btn-secondary">← Volver a Cursos</a>
+        <a href="{% url 'courses' %}">← Volver a Cursos</a>
     </section>
 
 {% endblock %}
