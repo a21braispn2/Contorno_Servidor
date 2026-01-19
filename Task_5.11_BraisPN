@@ -1,0 +1,32 @@
+**1. When do we use a ModelForm to build a form?** 
+
+When the form data is intended to be saved directly into a database model.
+
+**2. When do we use a Form class to build a form?** 
+
+When the data does not map directly to a database model or requires custom logic.
+
+**3. Difference between the get and post method in the Class Views.**
+
+- **GET:** Handles the request to **display** the form.
+- **POST:** Handles the request to **process/save** the submitted data.
+
+**4. Is the following code correct? Explain the reason.** **No.** 
+
+It is missing the `{% csrf_token %}` tag, which will cause a 403 Forbidden error due to security protections. It also lacks Django form rendering variables.
+
+**5. Which of the Class Views that we have studied can be used without a model?** 
+
+The `FormView`.
+
+**6. Indicate the differences between the FormView and the CreateView?**
+
+- **FormView:** Displays a form and runs logic but does not automatically save to a DB.
+- **CreateView:** Is linked to a model and automatically saves the form data as a new database record.
+
+**7. Is it necessary to have a ModelForm in order to use a CreateView? What is the advantage of using a ModelForm in this case?** 
+
+No, it is not necessary (Django can generate it automatically if you define `model` and `fields` in the View).
+
+Creating a ModelForm explicitly gives you full control over validation rules, CSS styling, and allows you to reuse the form in other views.
+
