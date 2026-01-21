@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Posts guardados para leer después</h1>
+
+<div>
+    {% for post in posts %}
+        <div style="margin-bottom:20px; border-bottom:1px solid #ccc; padding-bottom:10px;">
+            <h2><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.excerpt }}</p>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width:300px;">
+            {% endif %}
+            <a href="{% url 'post-detail' post.pk %}">Leer más</a>
+        </div>
+    {% empty %}
+        <p>No has guardado ningún post todavía.</p>
+    {% endfor %}
+</div>
+{% endblock %}
