@@ -1,0 +1,5 @@
+docker exec a571e3c98f1e chmod 755 -R .
+
+chmod 755 src
+cd src
+chmod 644 *

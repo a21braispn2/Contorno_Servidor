@@ -4,9 +4,15 @@ class Post
     private $title;
     private $contents;
 
+    public function __construct($title = null, $contents = null)
+    {
+        $this->title = $title;
+        $this->contents = $contents;
+    }
+
     /**
      * Get the value of title
-     */ 
+     */
     public function getTitle()
     {
         return $this->title;
@@ -16,7 +22,7 @@ class Post
      * Set the value of title
      *
      * @return  self
-     */ 
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -28,7 +34,7 @@ class Post
 
     /**
      * Get the value of contents
-     */ 
+     */
     public function getContents()
     {
         return $this->contents;
@@ -38,7 +44,7 @@ class Post
      * Set the value of contents
      *
      * @return  self
-     */ 
+     */
     public function setContents($contents)
     {
         $this->contents = $contents;
@@ -46,4 +52,3 @@ class Post
         return $this;
     }
 }
-?>

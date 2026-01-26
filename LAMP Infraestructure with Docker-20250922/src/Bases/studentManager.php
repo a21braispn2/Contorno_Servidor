@@ -35,27 +35,9 @@
                 $surname = isset($_POST['surname']) ? test_input($_POST['surname']) : "";
                 $age = isset($_POST['age']) ? test_input($_POST['age']) : "";
 
-                if (isset($_POST['delete'])) {
-                    if (!empty($dni)) {
-                        $oper->deleteStudent($dni);
-                        $successMessage = "Student successfully removed.";
-                    } else {
-                        $errorMessage = "Error: Missing data to delete.";
-                    }
-                }
 
-                elseif (isset($_POST['save_update'])) {
-                    if (!empty($dni) && !empty($name) && !empty($surname) && !empty($age)) {
-                        $student = new Student($dni, $name, $surname, $age);
-                        $oper->updateStudent($student);
-                        $successMessage = "Student successfully updated";
-                        $student = null;
-                    } else {
-                        $errorMessage = "You must complete all fields before updating.";
-                    }
-                }
 
-                elseif (isset($_POST['update'])) {
+                if (isset($_POST['update'])) {
                     $student = $oper->getStudent($dni);
                 }
 
@@ -92,14 +74,6 @@
     ?>
 
     <h1>List of Students</h1>
-
-    <?php if ($successMessage): ?>
-    <p style="color:green;"><?php echo $successMessage; ?></p>
-    <?php endif; ?>
-
-    <?php if ($errorMessage): ?>
-    <p style="color:red;"><?php echo $errorMessage; ?></p>
-    <?php endif; ?>
 
     <table id="studentsTable">
         <thead>

@@ -70,7 +70,6 @@ class Operations
     {
         $sqlString = 'INSERT INTO post (title, contents) VALUES (?, ?)';
         $query = $this->conn->prepare($sqlString);
-        $query->execute([$post->getTitle(), $post->getContents()]); 
+        $query->execute([$post->getTitle(), $post->getContents()]);
     }
 }
-?>

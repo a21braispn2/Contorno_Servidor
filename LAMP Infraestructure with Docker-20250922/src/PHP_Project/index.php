@@ -24,29 +24,29 @@
             </thead>
             <tbody id="artistList">
                 <?php
-                        require_once "OperationsDB.php";
-                        require_once("Utils/Artist.php");
-                        require_once("Utils/Vote.php");
-        try {
-            $oper = new Operations();
-            $artists = $oper->getAllArtists();
+                require_once "OperationsDB.php";
+                require_once("Utils/Artist.php");
+                require_once("Utils/Vote.php");
+                try {
+                    $oper = new Operations();
+                    $artists = $oper->getAllArtists();
 
-            usort($artists, function($a, $b) use ($oper) {
-                return $oper->getNumberVotes($b->getId()) - $oper->getNumberVotes($a->getId());
-            });
+                    usort($artists, function ($a, $b) use ($oper) {
+                        return $oper->getNumberVotes($b->getId()) - $oper->getNumberVotes($a->getId());
+                    });
 
-            foreach ($artists as $a) {
-                echo "<tr>
-                        <td>".htmlspecialchars($a->getName())."</td>
-                        <td>".htmlspecialchars($a->getLastSong())."</td>
-                        <td>".htmlspecialchars($oper->getNumberVotes($a->getId()))."</td>
+                    foreach ($artists as $a) {
+                        echo "<tr>
+                        <td>" . htmlspecialchars($a->getName()) . "</td>
+                        <td>" . htmlspecialchars($a->getLastSong()) . "</td>
+                        <td>" . htmlspecialchars($oper->getNumberVotes($a->getId())) . "</td>
                         
                     </tr>";
-            }
-        } catch (Exception $e) {
-            echo "<tr><td colspan='5' style='color:red;'>DB Error: " . $e->getMessage() . "</td></tr>";
-        }
-        ?>
+                    }
+                } catch (Exception $e) {
+                    echo "<tr><td colspan='5' style='color:red;'>DB Error: " . $e->getMessage() . "</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
         <button class="votar-btn"><a href="voting.php">Votar</a></button>
